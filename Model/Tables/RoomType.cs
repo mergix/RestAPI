@@ -4,8 +4,8 @@ namespace HotelApp.Models;
 
 public class RoomType:Base_Entity
 {
-    [Key]
-    public Guid roomTypeId { get; set; }
+    // [Key]
+    // public Guid roomTypeId { get; set; }
     
     public string roomtypeName { get; set; }
     

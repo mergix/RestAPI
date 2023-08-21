@@ -7,8 +7,8 @@ namespace HotelApp.Models;
 
 public class User:Base_Entity
 {
-    [Key]
-    public Guid UserId { get; set; }
+    // [Key]
+    // public Guid UserId { get; set; }
     
     public string firstName { get; set; }
      

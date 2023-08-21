@@ -21,7 +21,7 @@ public class RoomController : ControllerBase
 
     }
 
-    [HttpGet("allRooms")]
+    [HttpGet("/allRooms")]
     public IActionResult GetRoomsList()
     {
         // var jwt = Request.Cookies["token"];
@@ -147,13 +147,13 @@ public class RoomController : ControllerBase
         if (roomToDelete == null)
             return NotFound();
         
-         _roomService.DeleteRoom(roomToDelete.roomId);
+         _roomService.DeleteRoom(roomToDelete.Id);
         return NoContent();
     }
     
     
     [HttpGet("/allRoomTypes")]
-    public IActionResult GetRoomTypeList()
+    public async Task<ActionResult> GetRoomTypeList()
     {
         // var jwt = Request.Cookies["token"];
         //
@@ -247,7 +247,7 @@ public class RoomController : ControllerBase
         //     return Unauthorized();
         // }
         
-        if (id != room.roomTypeId)
+        if (id != room.Id)
         {
             return BadRequest();
         }
@@ -278,7 +278,7 @@ public class RoomController : ControllerBase
         if (roomToDelete == null)
             return NotFound();
         
-         _roomService.DeleteRoomType(roomToDelete.roomTypeId);
+         _roomService.DeleteRoomType(roomToDelete.Id);
         return NoContent();
     }
 

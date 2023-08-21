@@ -28,7 +28,7 @@ public class RoomRepository :IRoomRepository
     
     public Room getRoomById(Guid id)
     {
-        var roomById = _db.Room.FirstOrDefault(p => p.roomId == id);
+        var roomById = _db.Room.Include(r => r.roomType).FirstOrDefault(p => p.Id == id);
         return roomById ;
     }
 
@@ -53,7 +53,7 @@ public class RoomRepository :IRoomRepository
     
     public RoomType getRoomTypeById(Guid id)
     {
-        var roomById = _db.RoomType.FirstOrDefault(p => p.roomTypeId == id);
+        var roomById = _db.RoomType.FirstOrDefault(p => p.Id == id);
         return roomById ;
     }
 
@@ -66,7 +66,7 @@ public class RoomRepository :IRoomRepository
 
     public IEnumerable<Room> GetAllRoomsByLastModified()
     {
-        return _db.Room.OrderByDescending(r => r.lastModified).ToList();
+        return _db.Room.Include(r => r.roomType).OrderByDescending(r => r.lastModified).ToList();
     }
     
     public IEnumerable<RoomType> GetAllRoomTypesByLastModified()
@@ -85,7 +85,7 @@ public class RoomRepository :IRoomRepository
     
     public void UpdateNoSave(Room room)
     {
-         var gg =_db.Room.FirstOrDefault(x => x.roomId == room.roomId);
+         var gg =_db.Room.FirstOrDefault(x => x.Id == room.Id);
          gg.status = roomState.Booked;
         _db.Room.Update(gg);
         _db.SaveChanges();

@@ -48,7 +48,7 @@ public class RoomService:IRoomService
     {
         var newRoom = new Room
         {
-            roomId = Guid.NewGuid(),
+            Id = Guid.NewGuid(),
             roomType = _roomRepository.getRoomTypeById(model.roomTypeId),
             lastModified = DateTime.UtcNow,
             roomNo = model.roomNo,
@@ -63,7 +63,7 @@ public class RoomService:IRoomService
         
         var editRoom = new Room()
         {
-            roomId = model.roomId,
+            Id = model.roomId,
             roomType = _roomRepository.getRoomTypeById(model.roomTypeId),
             lastModified = DateTime.UtcNow,
             roomNo = model.roomNo,
@@ -84,7 +84,7 @@ public class RoomService:IRoomService
     {
         var newRoom = new RoomType()
         {
-            roomTypeId = model.roomTypeId,
+            Id = Guid.NewGuid(),
             roomtypeName = model.roomtypeName,
             cost = model.cost,
             lastModified = DateTime.UtcNow,
@@ -100,7 +100,7 @@ public class RoomService:IRoomService
         
         var editRoom = new RoomType()
         {
-            roomTypeId = model.roomTypeId,
+            Id = model.Id,
             roomtypeName = model.roomtypeName,
             cost = model.cost,
             lastModified = DateTime.UtcNow,

@@ -6,8 +6,8 @@ using System.ComponentModel.DataAnnotations;
 
 public class Booking:Base_Entity
 {
-    [Key]
-    public Guid bookingId { get; set; }
+    // [Key]
+    // public Guid bookingId { get; set; }
     
     
     

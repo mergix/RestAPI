@@ -178,7 +178,7 @@ public class UserController : ControllerBase
         {
             return Unauthorized();
         }
-        if (id != user.UserId)
+        if (id != user.Id)
         {
             return BadRequest();
         }
@@ -211,7 +211,7 @@ public class UserController : ControllerBase
         if (userToDelete == null)
             return NotFound();
     
-         _userService.DeleteUser(userToDelete.UserId);
+         _userService.DeleteUser(userToDelete.Id);
         return NoContent();
     }
     

@@ -5,8 +5,8 @@ namespace HotelApp.Models;
 
 public class Order:Base_Entity
 {
-    [Key]
-    public Guid orderId { get; set; }
+    // [Key]
+    // public Guid orderId { get; set; }
     public Booking booking { get; set; }
     public int quantity { get; set; }
     public decimal cost { get; set; }

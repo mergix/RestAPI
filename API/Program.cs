@@ -66,6 +66,8 @@ builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 
+
+
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
@@ -79,7 +81,13 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-app.UseCors(options => options.WithOrigins("http://localhost:3000","https://localhost:3000").AllowAnyMethod().AllowAnyHeader().AllowCredentials());
+app.UseCors(cors =>
+{
+    cors.
+        AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -5,8 +5,8 @@ namespace HotelApp.Models;
 
 public class Payment:Base_Entity
 {
-    [Key]
-    public Guid paymentId { get; set; }
+    // [Key]
+    // public Guid paymentId { get; set; }
     public Booking booking { get; set; }
     public int amount { get; set; }
     public String paymentType { get; set; }

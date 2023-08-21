@@ -7,8 +7,8 @@ using System.ComponentModel.DataAnnotations;
 
 public class Room:Base_Entity
 {
-    [Key]
-    public Guid roomId { get; set; }
+    // [Key]
+    // public Guid roomId { get; set; }
    
     public int roomNo { get; set; }
     

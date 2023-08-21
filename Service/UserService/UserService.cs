@@ -80,7 +80,7 @@ public class UserService : IUserService
         
         var viewModel = new UserResponseDTO()
         {
-            UserId = existingUser.UserId,
+            UserId = existingUser.Id,
             UserEmail = existingUser.UserEmail,
             RoleType = existingUser.roleType
         };
@@ -106,7 +106,7 @@ public class UserService : IUserService
         
         var viewModel = new UserResponseDTO()
         {
-            UserId = existingUser.UserId,
+            UserId = existingUser.Id,
             UserEmail = existingUser.UserEmail
         };
         return viewModel;
@@ -122,7 +122,7 @@ public class UserService : IUserService
 
         var newUser = new User()
         {
-            UserId = Guid.NewGuid(),
+            Id = Guid.NewGuid(),
             firstName = model.firstName,
             lastName = model.lastName,
             UserEmail = model.userEmail,
@@ -147,7 +147,7 @@ public class UserService : IUserService
 
         var viewModel = new UserResponseDTO()
         {
-            UserId = newUser.UserId,
+            UserId = newUser.Id,
             UserEmail = newUser.UserEmail
         };
 
@@ -160,7 +160,7 @@ public class UserService : IUserService
 
         var newUser = new User
         {
-            UserId = Guid.NewGuid(),
+            Id = Guid.NewGuid(),
             firstName = model.firstName,
             lastName = model.lastName,
             UserEmail = model.userEmail,
@@ -179,7 +179,7 @@ public class UserService : IUserService
 
         var viewModel = new UserResponseDTO()
         {
-            UserId = newUser.UserId,
+            UserId = newUser.Id,
             UserEmail = newUser.UserEmail
         };
 

@@ -27,7 +27,7 @@ public class BookingRepository : IBookingRepository
     
     public Booking GetById(Guid id)
     {
-        var bookingById = _db.Booking.Include(c => c.room).Include(c => c.room).FirstOrDefault(b => b.bookingId == id);
+        var bookingById = _db.Booking.Include(c => c.room).Include(c => c.room).FirstOrDefault(b => b.Id == id);
         return bookingById ;
     }
 
@@ -36,7 +36,7 @@ public class BookingRepository : IBookingRepository
         var bookingByuserId = _db.Booking
             .Include(c => c.room)
             .Include(c => c.user)
-            .Where(b => b.user.UserId == id)
+            .Where(b => b.user.Id == id)
             .Where(b => b.dateOut > DateTime.UtcNow)
             .ToList();
         
@@ -45,7 +45,7 @@ public class BookingRepository : IBookingRepository
     
     public IEnumerable<Booking> GetAllPastByUserId(Guid id)
     {
-        var bookingByuserId = _db.Booking.Include(c => c.room).Include(c => c.user).Where(b => b.user.UserId == id).Where(b => b.dateOut < DateTime.UtcNow).ToList();
+        var bookingByuserId = _db.Booking.Include(c => c.room).Include(c => c.user).Where(b => b.user.Id == id).Where(b => b.dateOut < DateTime.UtcNow).ToList();
         return bookingByuserId ;
     }
     
@@ -80,7 +80,7 @@ public class BookingRepository : IBookingRepository
     public void UnBook(Guid id)
     {
         var deleteBooking =  _db.Booking.Find(id);
-        var gg =_db.Room.FirstOrDefault(x => x.roomId == deleteBooking.room.roomId);
+        var gg =_db.Room.FirstOrDefault(x => x.Id == deleteBooking.room.Id);
         gg.status = roomState.Available;
         _db.Booking.Remove(deleteBooking);
         _db.SaveChanges();
