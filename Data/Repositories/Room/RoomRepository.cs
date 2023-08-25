@@ -45,6 +45,13 @@ public class RoomRepository :IRoomRepository
         _db.SaveChanges();
     }
     
+    public RoomType SaveRoomTypePic(RoomType room)
+    {
+        _db.RoomType.Add(room);
+        _db.SaveChanges();
+        return room;
+    }
+    
     public void UpdateRoomType(RoomType room)
     {
         _db.RoomType.Update(room);

@@ -9,7 +9,7 @@ public class RoomType:Base_Entity
     
     public string roomtypeName { get; set; }
     
-    public byte? [] RoomPicture { get; set; }
+    public byte [] RoomPicture { get; set; }
     
     public decimal? cost { get; set; }
     

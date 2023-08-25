@@ -3,6 +3,12 @@ using HotelApp.Models.Enums;
 
 namespace HotelApp.Models;
 
+public enum payState
+{
+    refund = 0, 
+    paid= 1
+}
+
 public class Payment:Base_Entity
 {
     // [Key]

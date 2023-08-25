@@ -1,3 +1,4 @@
+using HotelApp.Models;
 using HotelApp.Models.Enums;
 
 namespace Model.DTO;

@@ -3,7 +3,6 @@ using Hotel.Services;
 using Hotel.Services.EmailService;
 using Hotel.Services.PasswordService;
 using HotelApp.Models;
-using HotelApp.Models.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Model.DTO;
 

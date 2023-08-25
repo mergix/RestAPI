@@ -2,6 +2,13 @@ using System.Security.Cryptography;
 
 namespace Hotel.Services.PasswordService;
 
+public interface IPasswordHasher
+{
+    string Hash(string password);
+
+    bool Verify(string password, string inputPassword);
+}
+
 public class PasswordHasher:IPasswordHasher
 {
     private const int saltSize = 128 / 8;

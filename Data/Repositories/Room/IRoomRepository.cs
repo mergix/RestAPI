@@ -12,6 +12,7 @@ public interface IRoomRepository
     void DeleteRoom(Guid id);
     
     void AddRoomType(RoomType room);
+    RoomType SaveRoomTypePic(RoomType room);
     void UpdateRoomType(RoomType room);
     
     

@@ -3,6 +3,12 @@ using HotelApp.Models.Enums;
 
 namespace HotelApp.Models;
 
+public enum orderState
+{
+    pending = 0, 
+    completed= 1
+}
+
 public class Order:Base_Entity
 {
     // [Key]

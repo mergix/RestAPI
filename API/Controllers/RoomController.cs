@@ -1,9 +1,12 @@
+using System.IdentityModel.Tokens.Jwt;
+using System.Text.Json.Serialization;
 using Hotel.Services;
 using Hotel.Services.RoomService;
+using HotelApp.Data.Repositories;
 using HotelApp.Models;
-using HotelApp.Models.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Model.DTO;
+using Newtonsoft.Json;
 
 namespace HotelWebAPI.Controllers;
 
@@ -12,11 +15,13 @@ namespace HotelWebAPI.Controllers;
 public class RoomController : ControllerBase
 {
     private readonly IRoomService _roomService ;
+    private readonly IRoomRepository _roomRepository;
     private readonly IUserService _userService;
 
-    public RoomController(IRoomService roomService, IUserService userService)
+    public RoomController(IRoomService roomService, IUserService userService,IRoomRepository roomRepository)
     {
         _roomService = roomService;
+        _roomRepository = roomRepository;
         _userService = userService;
 
     }
@@ -281,6 +286,55 @@ public class RoomController : ControllerBase
          _roomService.DeleteRoomType(roomToDelete.Id);
         return NoContent();
     }
+    
+    [HttpPost]
+    public async Task<ActionResult> SaveFile(FileUpload fileObj)
+    {
+
+        RoomType roomType = JsonConvert.DeserializeObject<RoomType>(fileObj.roomType);
+
+        if (fileObj.file.Length > 0)
+        {
+            using (var ms = new MemoryStream())
+            {
+            fileObj.file.CopyTo(ms);
+            var fileBytes = ms.ToArray();
+            roomType.RoomPicture = fileBytes;
+
+            roomType = _roomRepository.SaveRoomTypePic(roomType);
+
+            if (roomType.Id != null)
+            {
+                return Ok("Saved");
+            }
+
+            }
+        }
+
+        return Ok("failed");
+    }
+    
+    
+    public byte[] GetImage(string sBase64String)
+    {
+        byte[] bytes = null;
+        if (!string.IsNullOrEmpty(sBase64String))
+        {
+            bytes = Convert.FromBase64String(sBase64String);
+        }
+
+        return bytes;
+    }
+    
+    [HttpGet]
+    public async Task<ActionResult> GetSavedRoomType(Guid id)
+    {
+        var roomType = _roomRepository.getRoomTypeById(id);
+        roomType.RoomPicture = this.GetImage(Convert.ToBase64String(roomType.RoomPicture));
+        return Ok(roomType);
+    }
+    
+    
 
     
 }

@@ -5,6 +5,12 @@ using HotelApp.Models.Enums;
 namespace HotelApp.Models;
 using System.ComponentModel.DataAnnotations;
 
+public enum roomState
+{
+    Available = 0, 
+    Booked = 1
+}
+
 public class Room:Base_Entity
 {
     // [Key]

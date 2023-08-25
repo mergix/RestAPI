@@ -5,6 +5,17 @@ using HotelApp.Models.Enums;
 
 namespace HotelApp.Models;
 
+public enum Role
+{
+    user = 0,
+    admin = 1
+}
+
+public enum Gender
+{
+    male = 0,
+    female =1
+}
 public class User:Base_Entity
 {
     // [Key]
