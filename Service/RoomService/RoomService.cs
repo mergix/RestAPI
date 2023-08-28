@@ -3,7 +3,7 @@ using HotelApp.Data.Repositories;
 using HotelApp.Models;
 
 using Model.DTO;
-
+using Newtonsoft.Json;
 
 
 namespace Hotel.Services.RoomService;
@@ -23,7 +23,7 @@ public interface IRoomService
     
     public  Task<Room> GetRoomById(Guid id);
     
-    public  Task<RoomType> CreateRoomType( RoomType model);
+    public  Task<RoomType> CreateRoomType( FileUpload model);
     
     public  void UpdateRoomType(RoomType model);
     
@@ -106,16 +106,39 @@ public class RoomService:IRoomService
         _roomRepository.DeleteRoom(id);
     }
     
-    public async Task<RoomType> CreateRoomType(RoomType model)
+    public async Task<RoomType> CreateRoomType(FileUpload model)
     {
+        //
+        RoomType roomType = JsonConvert.DeserializeObject<RoomType>(model.roomType);
+        
+        // RoomType roomType = JsonConvert.DeserializeObject<RoomType>(model.ro);
+        byte[] fileBytes = new byte[] { };
+
+        if (model.file.Length > 0)
+        {
+            using (var ms = new MemoryStream())
+            {
+                model.file.CopyTo(ms);
+                 fileBytes = ms.ToArray();
+                // roomType.RoomPicture = fileBytes;
+                
+                // roomType = _roomRepository.SaveRoomTypePic(roomType);
+
+
+
+            }
+        }
+
+       // var  Id = Guid.NewGuid();
+        
         var newRoom = new RoomType()
         {
             Id = Guid.NewGuid(),
-            roomtypeName = model.roomtypeName,
-            cost = model.cost,
+            roomtypeName = roomType.roomtypeName,
+            cost = roomType.cost,
             lastModified = DateTime.UtcNow,
-            description = model.description,
-            RoomPicture = model.RoomPicture,
+            description = roomType.description,
+            RoomPicture = fileBytes ,
         };
         _roomRepository.AddRoomType(newRoom);
         return newRoom ;

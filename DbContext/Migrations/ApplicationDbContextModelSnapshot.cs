@@ -147,9 +147,9 @@ namespace DbContext.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<byte?[]>("RoomPicture")
+                    b.Property<byte[]>("RoomPicture")
                         .IsRequired()
-                        .HasColumnType("smallint[]");
+                        .HasColumnType("bytea");
 
                     b.Property<decimal?>("cost")
                         .HasColumnType("numeric");

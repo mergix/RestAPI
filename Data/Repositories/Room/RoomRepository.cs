@@ -1,6 +1,6 @@
 using Hotel.DatabaseContext;
 using HotelApp.Models;
-using HotelApp.Models.Enums;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace HotelApp.Data.Repositories;

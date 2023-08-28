@@ -17,7 +17,7 @@ namespace DbContext.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     roomtypeName = table.Column<string>(type: "text", nullable: false),
-                    RoomPicture = table.Column<byte?[]>(type: "smallint[]", nullable: false),
+                    RoomPicture = table.Column<byte[]>(type: "bytea", nullable: false),
                     cost = table.Column<decimal>(type: "numeric", nullable: true),
                     description = table.Column<string>(type: "text", nullable: true),
                     lastModified = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)

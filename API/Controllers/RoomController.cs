@@ -204,28 +204,9 @@ public class RoomController : ControllerBase
         return await _roomService.GetRoomTypeById(id);
     }
     
-    [HttpPost("CreateRoomType")]
-    public async Task<ActionResult<RoomType>> CreateRoomType([FromBody] RoomType room)
+    [HttpPost("/CreateRoomType")]
+    public async Task<ActionResult<RoomType>> CreateRoomType([FromForm] FileUpload room)
     {
-       
-        // var jwt = Request.Cookies["token"];
-        //
-        // if (jwt == null)
-        // {
-        //     return Ok("No cookie");
-        // }
-        //
-        // var token = _userService.Verify(jwt);
-        //
-        // var userEmail = token.Issuer;
-        //
-        //
-        // var user = _userService.emailExists(userEmail);
-        // if (user.roleType != Role.admin)
-        // {
-        //     return Unauthorized();
-        // }
-        
         var newRoom = await _roomService.CreateRoomType(room);
         return Ok(newRoom);
     }
@@ -287,7 +268,7 @@ public class RoomController : ControllerBase
         return NoContent();
     }
     
-    [HttpPost]
+    [HttpPost("/saveFile")]
     public async Task<ActionResult> SaveFile(FileUpload fileObj)
     {
 
@@ -315,22 +296,22 @@ public class RoomController : ControllerBase
     }
     
     
-    public byte[] GetImage(string sBase64String)
-    {
-        byte[] bytes = null;
-        if (!string.IsNullOrEmpty(sBase64String))
-        {
-            bytes = Convert.FromBase64String(sBase64String);
-        }
-
-        return bytes;
-    }
+    // public byte[] GetImage(string sBase64String)
+    // {
+    //     byte[] bytes = null;
+    //     if (!string.IsNullOrEmpty(sBase64String))
+    //     {
+    //         bytes = Convert.FromBase64String(sBase64String);
+    //     }
+    //
+    //     return bytes;
+    // }
     
-    [HttpGet]
+    [HttpGet("/hnvjv")]
     public async Task<ActionResult> GetSavedRoomType(Guid id)
     {
         var roomType = _roomRepository.getRoomTypeById(id);
-        roomType.RoomPicture = this.GetImage(Convert.ToBase64String(roomType.RoomPicture));
+        // roomType.RoomPicture = this.GetImage(Convert.ToBase64String(roomType.RoomPicture));
         return Ok(roomType);
     }
     

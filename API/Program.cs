@@ -1,6 +1,7 @@
 using System.Text;
 using Hotel.DatabaseContext;
 using Hotel.Services;
+using Hotel.Services.BookingService;
 using Hotel.Services.EmailService;
 using Hotel.Services.PasswordService;
 using Hotel.Services.RoomService;
@@ -62,7 +63,7 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IRoomRepository, RoomRepository>();
 builder.Services.AddScoped<IRoomService, RoomService>();
 builder.Services.AddScoped<IBookingRepository, BookingRepository>();
-// builder.Services.AddScoped<IBookingService, BookingService>();
+builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 
